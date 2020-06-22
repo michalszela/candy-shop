@@ -1,0 +1,14 @@
+<h1 *ngIf="data.title">
+  {{ data.title }}
+</h1>
+
+<p *ngIf="data.message">{{ data.message }}</p>
+
+<div class="text-right">
+  <button
+    mat-raised-button 
+    color="accent"
+    (click)="close()">
+    Close
+  </button>
+</div>

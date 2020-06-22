@@ -1,0 +1,107 @@
+<form
+  id="form"
+  #creditCardForm="ngForm"
+  [formGroup]="form" 
+  (ngSubmit)="onSubmit()">
+    
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select formControlName="type">
+      <mat-option *ngFor="let creditCard of creditCards" [value]="creditCard.type">
+        {{ creditCard.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.controls.type.hasError('required')">
+      This field is required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+  
+  <mat-form-field>
+    <mat-label>Card number</mat-label>
+    <input 
+      matInput
+      name="card number"
+      formControlName="cardNumber">
+    <mat-error *ngIf="form.controls.cardNumber.hasError('required')">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.cardNumber.hasError('invalidCreditCardNumber')">
+      Invalid credit card number
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field>
+    <mat-label>CVV</mat-label>
+    <input 
+      matInput
+      name="cvv"
+      formControlName="cvv">
+    <mat-error *ngIf="form.controls.cvv.hasError('required')">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.cvv.hasError('invalidCreditCardCvv')">
+      Invalid CVV
+    </mat-error>
+  </mat-form-field>
+  
+  <br>
+
+  <mat-form-field>
+    <mat-label>Name on card</mat-label>
+    <input 
+      matInput
+      name="name on card"
+      formControlName="nameOnCard">
+    <mat-error *ngIf="form.controls.nameOnCard.hasError('required')">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.nameOnCard.hasError('maxlength')">
+      This field is to long
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field>
+    <mat-label>Expiration date</mat-label>
+    <input 
+      matInput
+      name="Expiration date"
+      placeholder="mm/yyyy"
+      formControlName="expirationDate"
+      mask="00/0000"
+      [dropSpecialCharacters]="false">
+    <mat-error *ngIf="form.controls.expirationDate.hasError('required')">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="form.controls.expirationDate.hasError('invalidCreditCardExpirationDate')">
+      This field is invalid
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <button 
+    mat-raised-button
+    color="accent"
+    type="button"
+    (click)="onCancel()">
+    Cancel
+  </button>
+
+  &nbsp;
+  &nbsp;
+
+  <button 
+    type="submit"
+    form="form"
+    mat-raised-button 
+    color="primary"
+    [disabled]="creditCardForm.submitted && creditCardForm.invalid">
+    Save
+  </button>
+</form>

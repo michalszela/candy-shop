@@ -1,0 +1,17 @@
+<h1>
+  <ng-container *ngIf="data.title; else defaultTitle">
+    {{ data.title }}
+  </ng-container>
+  <ng-template #defaultTitle>Wystąpił błąd.</ng-template>
+</h1>
+
+<p *ngIf="data.message">{{ data.message }}</p>
+
+<div class="text-right">
+  <button
+    mat-raised-button 
+    color="accent"
+    (click)="close()">
+    Close
+  </button>
+</div>

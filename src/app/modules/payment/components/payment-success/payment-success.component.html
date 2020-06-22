@@ -1,0 +1,43 @@
+<h1>Payment success</h1>
+
+<h2>Summary:</h2>
+
+<table style="width: 100%" mat-table [dataSource]="dataSource | async" class="mat-elevation-z8">
+  <ng-container matColumnDef="no">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let i = index"> {{ i + 1 }} </td>
+  </ng-container>
+  <ng-container matColumnDef="productName">
+    <th mat-header-cell *matHeaderCellDef>Product name</th>
+    <td mat-cell *matCellDef="let productGroup">{{ productGroup.product.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef>Quantity</th>
+    <td mat-cell *matCellDef="let productGroup">{{ productGroup.quantity }}</td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let productGroup">${{ productGroup.product.price }}</td>
+  </ng-container>
+  <ng-container matColumnDef="totalPrice">
+    <th mat-header-cell *matHeaderCellDef>TotalPrice</th>
+    <td mat-cell *matCellDef="let productGroup">${{ productGroup.totalPrice }}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<br>
+
+<div class="summary">
+  <span>Total price: ${{ totalPrice$ | async }}</span>
+
+  <a
+    routerLink="/"
+    mat-raised-button
+    color="primary">
+    Return to home page
+  </a>
+</div>
+
+

@@ -1,0 +1,44 @@
+<h1>Payment</h1>
+
+<br>
+
+<div>
+  <mat-form-field color="primary">
+    <mat-label>Choose credit card</mat-label>
+    <mat-select [(value)]="selectedCreditCard">
+      <mat-option *ngFor="let creditCard of creditCards$ | async" [value]="creditCard">
+       {{ creditCard.type }}: {{ creditCard.cardNumber }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  &nbsp;
+  &nbsp;
+  &nbsp;
+
+  <button 
+    mat-raised-button
+    (click)="addNewCreditCard()">
+    Add new credit card
+  </button>
+</div>
+
+<br>
+<hr>
+<br>
+
+<div>
+  <h2>Selected credit card:</h2>
+  <p><strong>Provider:</strong> {{ selectedCreditCard.type }}</p>
+  <p><strong>Card number:</strong> {{ selectedCreditCard.cardNumber }}</p>
+  <p><strong>CVV:</strong> {{ selectedCreditCard.cvv }}</p>
+  <p><strong>Name on card:</strong> {{ selectedCreditCard.nameOnCard }}</p>
+  <p><strong>Expiration date:</strong> {{ selectedCreditCard.expirationDate }}</p>
+  <img [src]="selectedCreditCardImg" alt="Credit card">
+</div>
+
+<br>
+<hr>
+<br>
+
+<button mat-raised-button color="primary" (click)="pay()">Pay ${{ totalPrice$ | async }}</button>

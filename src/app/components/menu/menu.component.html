@@ -1,0 +1,14 @@
+<a mat-button routerLink="/">Products</a>
+<a mat-button routerLink="/cart">
+  Cart&nbsp;&nbsp;&nbsp;
+  <mat-icon
+    [matBadge]="cartProductsNumber"
+    matBadgeColor="primary"
+    matBadgeSize="small">
+    shopping_cart
+  </mat-icon>
+</a>
+<a mat-button routerLink="/account">
+  Account&nbsp;&nbsp;&nbsp;
+  <mat-icon>account_circle</mat-icon>
+</a>
